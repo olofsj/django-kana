@@ -26,6 +26,16 @@ H2K_DICT = dict((v,k) for k, v in K2H_DICT.iteritems())
 H2K_PAT = re.compile("|".join(sorted(H2K_DICT.keys())) )
 K2H_PAT = re.compile("|".join(sorted(K2H_DICT.keys())) )
 
+IS_JAPANESE_RE = re.compile(u'[\u4E00-\u9FBF\u3040-\u309F\u30A0-\u30FF]',
+        re.UNICODE)
+
+def is_japanese(string):
+    """Check if a string contains any Japanese character"""
+    if IS_JAPANESE_RE.match(string):
+        return True
+    else:
+        return False
+
 def h2k(char):
     """Convert a hiragana character to katakana."""
     if ord(char) > 0x3040 and ord(char) < 0x3097:
