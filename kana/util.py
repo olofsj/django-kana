@@ -50,9 +50,10 @@ def k2h(char):
     else:
         return char
 
-def hiragana_to_katakana(word):
+def hiragana_to_katakana(word, katakana_long_vowels=False):
     """Convert all hiragana in a string into katakana. """
-    word = H2K_PAT.sub(lambda x: H2K_DICT[x.group(0)], word)
+    if katakana_long_vowels:
+        word = H2K_PAT.sub(lambda x: H2K_DICT[x.group(0)], word)
     word = u''.join([h2k(c) for c in word])
     return word
 
